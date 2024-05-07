@@ -14,7 +14,6 @@
             margin-bottom: 20px;
         }
         #result {
-            color: green;
             font-size: 20px;
             margin-top: 20px;
         }
@@ -48,8 +47,24 @@
                 answer: "Batman"
             },
             {
-                question: "Ein Teenager, der von einer radioaktiven Spinne gebissen wurde und daraufhin superkräfte bekam. Wie heißt er?",
+                question: "Ein Teenager, der von einer radioaktiven Spinne gebissen wurde und daraufhin Superkräfte bekam. Wie heißt er?",
                 answer: "Spider-Man"
+            },
+            {
+                question: "Wer ist die Amazonenprinzessin mit einem Lasso der Wahrheit?",
+                answer: "Wonder Woman"
+            },
+            {
+                question: "Wer ist der Wissenschaftler, der sich in ein grünes Monster verwandelt, wenn er wütend wird?",
+                answer: "Hulk"
+            },
+            {
+                question: "Wie heißt der X-Men-Anführer mit telepathischen Fähigkeiten und einem Rollstuhl?",
+                answer: "Professor X"
+            },
+            {
+                question: "Welcher Superheld hat einen metallischen Anzug, der durch fortschrittliche Technologie angetrieben wird?",
+                answer: "Iron Man"
             }
         ];
 
@@ -58,11 +73,14 @@
 
         function checkAnswer() {
             var userAnswer = document.getElementById('answer').value;
+            var resultDiv = document.getElementById('result');
             if (userAnswer.toLowerCase() === questions[currentQuestion].answer.toLowerCase()) {
-                document.getElementById('result').textContent = "Richtig!";
+                resultDiv.textContent = "Richtig!";
+                resultDiv.style.color = 'green';
                 score++;
             } else {
-                document.getElementById('result').textContent = "Falsch, die richtige Antwort war: " + questions[currentQuestion].answer;
+                resultDiv.textContent = "Falsch, die richtige Antwort war: " + questions[currentQuestion].answer;
+                resultDiv.style.color = 'red';
             }
             currentQuestion++;
             if (currentQuestion < questions.length) {
@@ -70,11 +88,17 @@
             } else {
                 document.getElementById('question').textContent = "Spiel beendet!";
                 document.getElementById('answer').style.display = 'none';
-                document.getElementById('result').textContent = "";
+                resultDiv.textContent = "";
             }
             document.getElementById('score').textContent = "Punkte: " + score;
-            document.getElementById('answer').value = ""; // Clear input field
+            document.getElementById('answer').value = ""; // Eingabefeld leeren
         }
+
+        document.getElementById('answer').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
     </script>
 </body>
 </html>
