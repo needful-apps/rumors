@@ -36,6 +36,19 @@
             font-size: 24px;
             margin-top: 20px;
         }
+        #progress-bar {
+            width: 100%;
+            background-color: #c8e6c9;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        #progress {
+            width: 0%;
+            background-color: #00796b;
+            height: 20px;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
         input, button {
             font-size: 18px;
             padding: 10px;
@@ -72,6 +85,9 @@
         <div id="question">Wie heißt der Superheld, der aus Krypton stammt und eine blaue Uniform mit einem roten Cape trägt?</div>
         <input type="text" id="answer" placeholder="Deine Antwort">
         <button id="checkButton" onclick="checkAnswer()">Überprüfen</button>
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
         <div id="result"></div>
         <div id="score">Punkte: 0</div>
         <div id="congratulations"></div>
@@ -112,6 +128,15 @@
         var currentQuestion = 0;
         var score = 0;
 
+        // Fragenliste zufällig mischen
+        questions = questions.sort(() => Math.random() - 0.5);
+
+        function updateProgress() {
+            var progressElement = document.getElementById('progress');
+            var progressPercent = (currentQuestion / questions.length) * 100;
+            progressElement.style.width = progressPercent + '%';
+        }
+
         function checkAnswer() {
             var userAnswer = document.getElementById('answer').value;
             var resultDiv = document.getElementById('result');
@@ -124,6 +149,7 @@
                 resultDiv.style.color = 'red';
             }
             currentQuestion++;
+            updateProgress();
             if (currentQuestion < questions.length) {
                 document.getElementById('question').textContent = questions[currentQuestion].question;
             } else {
@@ -145,6 +171,8 @@
                 checkAnswer();
             }
         });
+
+        updateProgress(); // Anfangs den Fortschrittsbalken initialisieren
     </script>
 </body>
 </html>
