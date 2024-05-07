@@ -4,18 +4,37 @@
     <meta charset="UTF-8">
     <title>Warentest: Der Ultimative Kugelschreiber</title>
     <style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); color: #ff0000; }
+            100% { transform: scale(1); color: #892ce4; }
+        }
+
+        @keyframes colorChange {
+            0% { background-color: #fc6d26; }
+            50% { background-color: #892ce4; }
+            100% { background-color: #34cf5d; }
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f6f8fa;
             color: #333;
+            animation: colorChange 10s infinite;
         }
         .header {
             background-color: #fc6d26;
             color: white;
             padding: 10px 20px;
             text-align: center;
+            animation: spin 5s linear infinite;
         }
         .content {
             background-color: white;
@@ -23,9 +42,11 @@
             margin: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: slideInFromLeft 1s ease-out;
         }
         h1, h2 {
             color: #fc6d26;
+            animation: pulse 3s infinite;
         }
         p {
             line-height: 1.6;
@@ -33,6 +54,7 @@
         .highlight {
             color: #892ce4;
             font-weight: bold;
+            animation: pulse 2s infinite;
         }
         .footer {
             text-align: center;
@@ -42,6 +64,7 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+            animation: spin 10s linear infinite;
         }
     </style>
 </head>
