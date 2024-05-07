@@ -26,15 +26,22 @@
             font-size: 16px;
             padding: 10px;
         }
+        #congratulations {
+            display: none;
+            font-size: 24px;
+            color: purple;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Comic-Quiz!</h1>
     <div id="question">Wie heißt der Superheld, der aus Krypton stammt und eine blaue Uniform mit einem roten Cape trägt?</div>
     <input type="text" id="answer" placeholder="Deine Antwort">
-    <button onclick="checkAnswer()">Überprüfen</button>
+    <button id="checkButton" onclick="checkAnswer()">Überprüfen</button>
     <div id="result"></div>
     <div id="score">Punkte: 0</div>
+    <div id="congratulations"></div>
 
     <script>
         var questions = [
@@ -86,9 +93,14 @@
             if (currentQuestion < questions.length) {
                 document.getElementById('question').textContent = questions[currentQuestion].question;
             } else {
-                document.getElementById('question').textContent = "Spiel beendet!";
+                // Verstecke Eingabefeld, Button und Frage, zeige Gratulationsnachricht
+                document.getElementById('question').style.display = 'none';
                 document.getElementById('answer').style.display = 'none';
-                resultDiv.textContent = "";
+                document.getElementById('checkButton').style.display = 'none';
+                resultDiv.style.display = 'none';
+                document.getElementById('congratulations').style.display = 'block';
+                document.getElementById('congratulations').innerHTML = 
+                    `Herzlichen Glückwunsch! Du hast ${score} von ${questions.length} Punkten erreicht.`;
             }
             document.getElementById('score').textContent = "Punkte: " + score;
             document.getElementById('answer').value = ""; // Eingabefeld leeren
