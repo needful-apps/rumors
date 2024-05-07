@@ -5,12 +5,26 @@
     <title>Comic-Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background-color: #e0f7fa;
             text-align: center;
-            padding: 20px;
+            padding: 50px;
+        }
+        #quiz-container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: auto;
+            max-width: 500px;
+        }
+        h1 {
+            color: #00796b;
+            font-size: 36px;
         }
         #question {
+            color: #004d40;
+            font-size: 24px;
             margin-bottom: 20px;
         }
         #result {
@@ -18,30 +32,50 @@
             margin-top: 20px;
         }
         #score {
-            color: blue;
+            color: #00796b;
             font-size: 24px;
             margin-top: 20px;
         }
         input, button {
-            font-size: 16px;
+            font-size: 18px;
             padding: 10px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: 2px solid #004d40;
+            margin-bottom: 10px;
+            outline: none;
+            width: 80%;
+            max-width: 400px;
+        }
+        input {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #004d40;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00796b;
         }
         #congratulations {
             display: none;
             font-size: 24px;
-            color: purple;
+            color: #d32f2f;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Comic-Quiz!</h1>
-    <div id="question">Wie heißt der Superheld, der aus Krypton stammt und eine blaue Uniform mit einem roten Cape trägt?</div>
-    <input type="text" id="answer" placeholder="Deine Antwort">
-    <button id="checkButton" onclick="checkAnswer()">Überprüfen</button>
-    <div id="result"></div>
-    <div id="score">Punkte: 0</div>
-    <div id="congratulations"></div>
+    <div id="quiz-container">
+        <h1>Comic-Quiz!</h1>
+        <div id="question">Wie heißt der Superheld, der aus Krypton stammt und eine blaue Uniform mit einem roten Cape trägt?</div>
+        <input type="text" id="answer" placeholder="Deine Antwort">
+        <button id="checkButton" onclick="checkAnswer()">Überprüfen</button>
+        <div id="result"></div>
+        <div id="score">Punkte: 0</div>
+        <div id="congratulations"></div>
+    </div>
 
     <script>
         var questions = [
