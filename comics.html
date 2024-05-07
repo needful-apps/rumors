@@ -1,10 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <title>.Comics alles um die bunten Bildergeschichten</title>
+    <meta charset="UTF-8">
+    <title>Comic-Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+        #question {
+            margin-bottom: 20px;
+        }
+        #result {
+            color: green;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #score {
+            color: blue;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
+    <h1>Comic-Quiz!</h1>
+    <div id="question">Wie heißt der Superheld, der aus Krypton stammt und eine blaue Uniform mit einem roten Cape trägt?</div>
+    <input type="text" id="answer" placeholder="Deine Antwort">
+    <button onclick="checkAnswer()">Überprüfen</button>
+    <div id="result"></div>
+    <div id="score">Punkte: 0</div>
 
+    <script>
+        var questions = [
+            {
+                question: "Wie heißt der Superheld, der aus Krypton stammt und eine blaue Uniform mit einem roten Cape trägt?",
+                answer: "Superman"
+            },
+            {
+                question: "Ein reicher Mann, der nachts ein Kostüm anzieht und gegen das Verbrechen in Gotham City kämpft. Wer ist das?",
+                answer: "Batman"
+            },
+            {
+                question: "Ein Teenager, der von einer radioaktiven Spinne gebissen wurde und daraufhin superkräfte bekam. Wie heißt er?",
+                answer: "Spider-Man"
+            }
+        ];
 
+        var currentQuestion = 0;
+        var score = 0;
+
+        function checkAnswer() {
+            var userAnswer = document.getElementById('answer').value;
+            if (userAnswer.toLowerCase() === questions[currentQuestion].answer.toLowerCase()) {
+                document.getElementById('result').textContent = "Richtig!";
+                score++;
+            } else {
+                document.getElementById('result').textContent = "Falsch, die richtige Antwort war: " + questions[currentQuestion].answer;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                document.getElementById('question').textContent = questions[currentQuestion].question;
+            } else {
+                document.getElementById('question').textContent = "Spiel beendet!";
+                document.getElementById('answer').style.display = 'none';
+                document.getElementById('result').textContent = "";
+            }
+            document.getElementById('score').textContent = "Punkte: " + score;
+            document.getElementById('answer').value = ""; // Clear input field
+        }
+    </script>
 </body>
 </html>
