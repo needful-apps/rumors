@@ -39,7 +39,7 @@ package-content-job:
 create-release-job:
   stage: release
   script:
-    - ci-release ${CI_JOB_TOKEN} ${CI_COMMIT_REF_NAME} ${CI_PROJECT_ID} ${CI_COMMIT_TAG} ${CI_PROJECT_UR}L
+    - python3 /opt/releaser/release.py ${CI_JOB_TOKEN} ${CI_COMMIT_REF_NAME} ${CI_PROJECT_ID} ${CI_COMMIT_TAG} ${CI_PROJECT_URL}
   only:
     - tags
 
