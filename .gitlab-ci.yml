@@ -33,7 +33,7 @@ package-content-job:
     paths:
       - content.zip   
   only:
-    - tags    
+    - tags
 
 get-new-version-job:   
   stage: deploy
