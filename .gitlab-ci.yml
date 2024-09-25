@@ -47,7 +47,7 @@ get-new-version-job:
         -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjc2MDg2MTQsImlzcyI6InBhdGNocGlsb3QiLCJzdWIiOiJoYWJpY2h0c3dhbGQiLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4ifX0.i_1iNqdgaIcBa9cuUQnvqNR6lKZMEWpBwg5lh2SxffQ" \
         -H "Content-Type: application/json" \
         -d '{
-              "version": "$version",
+              "version": "'"$version"'",
               "app_id": 4,
               "instruction": "have a good thyme",
               "relies_on_version": "current"
