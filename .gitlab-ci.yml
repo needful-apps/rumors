@@ -26,6 +26,7 @@ lint-test-job:   # This job also runs in the test stage.
 
 get-new-version-job:   # This job runs before the deploy stage to get the latest version.
   stage: deploy
+  image: curlimages/curl:latest  # Using a minimal curl image for simplicity.
   script:
     - echo "Fetching newest version..."
     - |
@@ -39,10 +40,11 @@ get-new-version-job:   # This job runs before the deploy stage to get the latest
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *all* previous jobs complete successfully.
+  image: curlimages/curl:latest  # Using the same image for consistency
   environment: production
   script:
     - echo "Deploying application..."
-    - Invoke-WebRequest -Uri http://automation.needful-apps.de/git-pull -Method POST
+    - curl -X POST "http://automation.needful-apps.de/git-pull"
     - echo "Application successfully deployed."
     - echo "Informing version service with new version $version"
     - |
