@@ -36,6 +36,11 @@ get-new-version-job:
     - echo "Tagging current commit with version $version"
     - git config --global user.email "ci@needful-apps.de"
     - git config --global user.name "CI Pipeline"
+    - if git rev-parse "$version" >/dev/null 2>&1; then
+        echo "Tag $version already exists, removing it...";
+        git tag -d "$version";
+        git push origin :refs/tags/"$version";
+      fi
     - git tag "$version"
     - git push https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.needful-apps.de/Schulung/rumors.git "$version"
     - echo "Deploying application..."
