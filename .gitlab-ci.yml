@@ -1,6 +1,7 @@
 stages:          
   - build
   - test
+  - package
   - deploy
 
 build-job:      
@@ -22,6 +23,17 @@ lint-test-job:   # This job also runs in the test stage.
     - echo "Linting code... This will take about 10 seconds."
     - sleep 1
     - echo "No lint issues found."
+
+package-content-job:   
+  stage: package
+  script:
+    - echo "Packaging all *.htm* files into content.zip"
+    - zip -r content.zip *.htm*
+  artifacts:
+    paths:
+      - content.zip   
+  only:
+    - tags    
 
 get-new-version-job:   
   stage: deploy
