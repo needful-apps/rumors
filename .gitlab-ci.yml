@@ -42,7 +42,7 @@ create-release-job:
     - echo "Creating a new release and attaching the artifact for project ${CI_PROJECT_ID}"
     - RELEASE_URL="https://gitlab.needful-apps.de/api/v4/projects/${CI_PROJECT_ID}/releases"
     - echo "Release url is $RELEASE_URL"
-    - CREATE='curl --location "${RELEASE_URL}" --header "${R_TOKEN}" --header "Content-Type:application/json" --data "{\"name\":\"New release\", \"tag_name\":\"1.25.32\", \"description\"":\"Super nice release\", \"assets":\{ \"links\":[{ \"name\":\"hoge\", \"url\":\"https://google.com\",\"direct_asset_path\":\"/binaries/linux-amd64\", \"link_type\":\"other\" } ] } }"'
+    - CREATE=curl --location "$RELEASE_URL" --header "$R_TOKEN" --header "Content-Type:application/json" --data "{\"name\":\"New release\", \"tag_name\":\"1.25.32\", \"description\"":\"Super nice release\", \"assets":\{ \"links\":[{ \"name\":\"hoge\", \"url\":\"https://google.com\",\"direct_asset_path\":\"/binaries/linux-amd64\", \"link_type\":\"other\" } ] } }"
     - echo $CREATE
   only:
     - tags
