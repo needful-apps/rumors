@@ -25,6 +25,10 @@ lint-test-job:   # This job also runs in the test stage.
 
 get-new-version-job:   
   stage: deploy
+  only:
+    - main
+  except:
+    - tags
   script:
     - echo "Fetching newest version..."
     - |
