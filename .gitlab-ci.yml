@@ -43,8 +43,8 @@ create-release-job:
     - RELEASE_URL="https://gitlab.needful-apps.de/api/v4/projects/${CI_PROJECT_ID}/releases"
     - echo "Release url is $RELEASE_URL"
     - |
-      curl --location 'https://gitlab.needful-apps.de/api/v4/projects/24/releases' 
-        --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" \
+      curl --location $RELEASE_URL"
+        --header "$R_TOKEN" \
         --header "Content-Type: application/json" \
         --data '{
           "name": "New release",
