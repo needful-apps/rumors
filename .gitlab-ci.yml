@@ -33,14 +33,6 @@ get-new-version-job:
       version=$(echo $response | jq -r '.version')
       echo "Fetched version: $version"
     - echo "Tagging current commit with version $version"
-    - git config --global user.email "ci@needful-apps.de"
-    - git config --global user.name "CI Pipeline"
-    - sleep 1
-    - if git rev-parse "$version" >/dev/null 2>&1; then
-        echo "Tag $version already exists, removing it...";
-        git tag -d "$version";
-        git push origin :refs/tags/"$version";
-      fi
     - sleep 1
     - git tag "$version"
     - sleep 1
