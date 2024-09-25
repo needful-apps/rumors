@@ -40,8 +40,10 @@ create-release-job:
   stage: release
   script:
     - echo "Creating a new release and attaching the artifact for project ${CI_PROJECT_ID}"
+    - RELEASE_URL="https://gitlab.needful-apps.de/api/v4/projects/${CI_PROJECT_ID}/releases"
+    - echo "The release URL is: $RELEASE_URL"
     - |
-      curl -X POST "https://gitlab.needful-apps.de/api/v4/projects/'"${CI_PROJECT_ID}"'/releases" \
+      curl -X POST "$RELEASE_URL" \
         -H "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
         -H "Content-Type: application/json" \
         -d '{
