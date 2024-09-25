@@ -52,6 +52,6 @@ get-new-version-job:
               "instruction": "have a good thyme",
               "relies_on_version": "current"
             }'
-    - echo "Version information sent successfully."
+    - echo "Version information sent successfully!"
 
 
