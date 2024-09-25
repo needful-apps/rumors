@@ -44,23 +44,19 @@ create-release-job:
       curl -X POST "https://gitlab.needful-apps.de/api/v4/projects/${CI_PROJECT_ID}/releases" \
         -H "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
         -H "Content-Type: application/json" \
-        --data @<(cat <<EOF
-        {
-          "name": "Release for version \"$CI_COMMIT_TAG\"",
-          "tag_name": "$CI_COMMIT_TAG",
-          "description": "Release description for $CI_COMMIT_TAG",
-          "assets": {
-            "links": [
-              {
-                "name": "Download content.zip",
-                "url": "$CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_REF_NAME/raw/content.zip?job=package-content-job"
+        -d '{
+              "name": "Release for version \"$CI_COMMIT_TAG\"",
+              "tag_name": "$CI_COMMIT_TAG",
+              "description": "Release description for $CI_COMMIT_TAG",
+              "assets": {
+                "links": [
+                  {
+                    "name": "Download content.zip",
+                    "url": "$CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_REF_NAME/raw/content.zip?job=package-content-job"
+                  }
+                ]
               }
-            ]
-          }
-        }
-        EOF
-        )
-
+            }'
   only:
     - tags
 
