@@ -44,7 +44,7 @@ create-release-job:
     - echo "Release url is $RELEASE_URL"
     - |
       curl --location 'https://gitlab.needful-apps.de/api/v4/projects/24/releases' \
-        --header "PRIVATE-TOKEN: glpat-x8dyRE1vvyw3qEJwzdoS" \
+        --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" \
         --header "Content-Type: application/json" \
         --data '{
           "name": "New release",
