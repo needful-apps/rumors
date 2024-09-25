@@ -30,7 +30,10 @@ package-content-job:
   script:
     - echo "Packaging all *.htm* files into content.zip"
     - zip -r content.zip *.htm*
+    - echo "PACK_JOB_ID=${CI_JOB_ID}" > .env
   artifacts:
+    reports:
+      dotenv: .env
     paths:
       - content.zip   
   only:
@@ -40,7 +43,7 @@ create-release-job:
   stage: release
   script:
     - echo "Creating release"
-    - python3 /opt/releaser/release.py ${CI_JOB_TOKEN} ${CI_JOB_ID} ${CI_PROJECT_ID} ${CI_COMMIT_TAG} ${CI_PROJECT_URL}
+    - python3 /opt/releaser/release.py ${CI_JOB_TOKEN} ${PACK_JOB_ID} ${CI_PROJECT_ID} ${CI_COMMIT_TAG} ${CI_PROJECT_URL}
   only:
     - tags
 
