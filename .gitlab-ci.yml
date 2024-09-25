@@ -39,7 +39,7 @@ package-content-job:
 create-release-job:
   stage: release
   script:
-    - echo "Creating a new release and attaching the artifact..."
+    - echo "Creating a new release and attaching the artifact for project ${CI_PROJECT_ID}"
     - |
       curl -X POST "https://gitlab.needful-apps.de/api/v4/projects/${CI_PROJECT_ID}/releases" \
         -H "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
