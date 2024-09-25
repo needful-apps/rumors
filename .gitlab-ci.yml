@@ -37,16 +37,12 @@ get-new-version-job:
       version=$(echo $response | jq -r '.version')
       echo "Fetched version: $version"
     - echo "Tagging current commit with version $version"
-    - sleep 1
     - git tag "$version"
-    - sleep 1
     - git push https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.needful-apps.de/Schulung/rumors.git "$version"
     - echo "Deploying application..."
-    - sleep 1
     - curl -X POST "http://automation.needful-apps.de/git-pull"
     - echo "Application successfully deployed."
     - echo "Informing version service with new version $version"
-    - sleep 1
     - |
       curl -X POST "https://needful-apps.de:8080/version" \
         -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjc2MDg2MTQsImlzcyI6InBhdGNocGlsb3QiLCJzdWIiOiJoYWJpY2h0c3dhbGQiLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4ifX0.i_1iNqdgaIcBa9cuUQnvqNR6lKZMEWpBwg5lh2SxffQ" \
