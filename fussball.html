@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Warentest: Der Ultimative Kugelschreiber</title>
+    <style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); color: #ff0000; }
+            100% { transform: scale(1); color: #892ce4; }
+        }
+
+        @keyframes colorChange {
+            0% { background-color: #fc6d26; }
+            50% { background-color: #892ce4; }
+            100% { background-color: #34cf5d; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f8fa;
+            color: #333;
+            animation: colorChange 10s infinite;
+        }
+        .header {
+            background-color: #fc6d26;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            animation: spin 5s linear infinite;
+        }
+        .content {
+            background-color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: slideInFromLeft 1s ease-out;
+        }
+        h1, h2 {
+            color: #fc6d26;
+            animation: pulse 3s infinite;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .highlight {
+            color: #892ce4;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        .footer {
+            text-align: center;
+            padding: 12px 20px;
+            background-color: #fc6d26;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            animation: spin 10s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Ultimatives Fusßballspiel</h1>
+    </div>
+
+    <div class="content">
+        <h2>Fusßballspiel</h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore </p>
+        
+        <h2>Strafen</h2>
+        <p>magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd  </p>
+        
+        <h2>Tore</h2>
+        <p>gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadip</p>
+        
+        <h2>Fazit</h2>
+        <p>dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor </p>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 Ultimatives Fusßballspiel</p>
+    </div>
+</body>
+</html>
