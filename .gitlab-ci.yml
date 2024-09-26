@@ -23,8 +23,12 @@ build-job:
     - ls
     - echo "Compiling the code..."
     - echo "Compile complete."
+    - echo "hello world" > hw.txt
   after_script:
     - "..."
+  artifacts:
+    paths:
+      - "hw.txt"
 
 unit-test-job:   
   stage: test    
