@@ -1,15 +1,30 @@
-stages:          
+stages:
   - build
   - test
   - package
   - deploy
   - release
+  - after_script          
 
-build-job:      
+before_script:
+  - echo "single ...."
+
+after_jobs:
+  stage: after_script
+  script:
+    - echo "after script...."
+  
+
+build-job:
+  stage: build
+  before_script:
+    - echo "vorher"
   script:
     - ls
     - echo "Compiling the code..."
     - echo "Compile complete."
+  after_script:
+    - "..."
 
 unit-test-job:   
   stage: test    
