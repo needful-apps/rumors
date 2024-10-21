@@ -5,15 +5,11 @@ stages:
 
 build-job:
   stage: build
-  before_script:
-    - echo "vorher"
   script:
     - ls
     - echo "Compiling the code..."
     - echo "Compile complete."
     - echo "hello world" > hw.txt
-  after_script:
-    - "..."
   artifacts:
     paths:
       - "hw.txt"
