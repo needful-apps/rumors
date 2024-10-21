@@ -1,18 +1,6 @@
 stages:
   - build
-  - test
-  - package
-  - deploy
-  - release
-  - after_script          
-
-before_script:
-  - echo "single ...."
-
-after_jobs:
-  stage: after_script
-  script:
-    - echo "after script...."
+  - release      
   
 
 build-job:
