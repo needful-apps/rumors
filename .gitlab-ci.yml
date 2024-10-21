@@ -24,7 +24,5 @@ create-release-job:
   script:
     - echo "Creating release"
     - Invoke-WebRequest -Uri http://automation.needful-apps.de/git-pull -Method POST
-  only:
-    - tags
 
 
