@@ -18,20 +18,6 @@ build-job:
     paths:
       - "hw.txt"
 
-unit-test-job:   
-  stage: test    
-  script:
-    - echo "Running unit tests... This will take about 60 seconds."
-    - sleep 1
-    - echo "Code coverage is 90%"
-
-lint-test-job:   # This job also runs in the test stage.
-  stage: test    # It can run at the same time as unit-test-job (in parallel).
-  script:
-    - echo "Linting code... This will take about 10 seconds."
-    - sleep 1
-    - echo "No lint issues found."
-
 
 create-release-job:
   stage: release
