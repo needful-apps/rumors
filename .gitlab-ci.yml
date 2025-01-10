@@ -1,7 +1,6 @@
 stages:
   - build
   - release      
-  
 
 build-job:
   stage: build
@@ -14,11 +13,16 @@ build-job:
     paths:
       - "hw.txt"
 
-
 create-release-job:
   stage: release
   script:
     - echo "Creating release"
-    - Invoke-WebRequest -Uri http://automation.needful-apps.de/git-pull -Method POST
+    - |
+      if [[ "$CI_RUNNER_TAGS" == *windows* ]]; then
+        Invoke-WebRequest -Uri http://automation.needful-apps.de/git-pull -Method POST
+      else
+        curl -X POST http://automation.needful-apps.de/git-pull
+      fi
+
 
 
