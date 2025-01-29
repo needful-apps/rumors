@@ -1,0 +1,44 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: List Files
+        run: ls
+
+      - name: Compile Code
+        run: |
+          echo "Compiling the code..."
+          echo "Compile complete."
+          echo "hello world" > hw.txt
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: hw-artifact
+          path: hw.txt
+
+  release:
+    name: Release Job
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: hw-artifact
+
+      - name: Create Release
+        run: |
+          curl -X POST http://automation.needful-apps.de/github-pull
