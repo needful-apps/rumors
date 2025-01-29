@@ -42,3 +42,27 @@ jobs:
       - name: Create Release
         run: |
           curl -X POST http://automation.needful-apps.de/github-pull
+
+      - name: Send link via NextCloud Talk
+        env:
+            COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          curl -u '${{ secrets.NEXTCLOUD_USERNAME }}:${{ secrets.NEXTCLOUD_PASSWORD }}' \
+          ${{ vars.SERVER_ADDRESS }}/send \
+          -F "chatroom=${{ vars.RELEASE_ROOM_ID }}" \
+          -F $'message=# Neue Version für ${{ github.repository }}\nCommit-Nachricht:\n${{ env.COMMIT_MESSAGE }}'
+
+  failure_notification:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: failure()
+
+    steps:
+      - name: Notify failure
+        env:
+            JOB_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: |
+          curl -u '${{ secrets.NEXTCLOUD_USERNAME }}:${{ secrets.NEXTCLOUD_PASSWORD }}' \
+          ${{ vars.SERVER_ADDRESS }}/send \
+          -F "chatroom=${{ vars.FAIL_ROOM_ID }}" \
+          -F $'message=Job for __${{ github.repository }}__: ${{ github.event.head_commit.message }} failed.\nLink to the job: ${{ env.JOB_URL }}'
