@@ -1,28 +1,49 @@
 stages:
   - build
-  - release      
+  - release
+  - notify_failure
 
 build-job:
   stage: build
   script:
+    - echo "Checking out the repository"
     - ls
     - echo "Compiling the code..."
     - echo "Compile complete."
     - echo "hello world" > hw.txt
   artifacts:
     paths:
-      - "hw.txt"
+      - hw.txt
 
-create-release-job:
+release-job:
+  only:
+    - main
   stage: release
+  needs: 
+    - build-job
   script:
-    - echo "Creating release"
+    - echo "Downloading artifact"
+    - cp hw.txt /tmp/hw.txt
+    - echo "Triggering release"
+    - curl -X POST http://automation.needful-apps.de/github-pull
+    - echo "Sending release link to NextCloud Talk"
     - |
-      if [[ "$CI_RUNNER_TAGS" == *windows* ]]; then
-        Invoke-WebRequest -Uri http://automation.needful-apps.de/git-pull -Method POST
-      else
-        curl -X POST http://automation.needful-apps.de/git-pull
-      fi
+      curl -u "${NEXTCLOUD_USERNAME}:${NEXTCLOUD_PASSWORD}" \
+        ${SERVER_ADDRESS}/send \
+        -F "chatroom=${RELEASE_ROOM_ID}" \
+        -F $'message=# Neue Version f\u00fcr ${CI_PROJECT_PATH}\nCommit-Meldung: ${CI_COMMIT_MESSAGE}'
 
-
-
+failure-notification-job:
+  only:
+    - main
+  stage: notify_failure
+  needs: 
+    - build-job
+  when: on_failure
+  script:
+    - echo "Notifying failure via NextCloud Talk"
+    - |
+      curl -u "${NEXTCLOUD_USERNAME}:${NEXTCLOUD_PASSWORD}" \
+        ${SERVER_ADDRESS}/send \
+        -F "chatroom=${FAIL_ROOM_ID}" \
+        -F $'message=Job f\u00fcr ${CI_PROJECT_PATH} fehlgeschlagen.\nCommit-Meldung: ${CI_COMMIT_MESSAGE}\nLink: ${CI_JOB_URL}'
