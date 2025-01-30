@@ -24,10 +24,10 @@ release-job:
   script:
     - echo "Downloading artifact"
     - cp hw.txt /tmp/hw.txt
+    - apk --no-cache add curl
     - echo "Triggering release"
     - curl -X POST http://automation.needful-apps.de/github-pull
     - echo "Sending release link to NextCloud Talk"
-    - apk --no-cache add curl
     - |
       curl -u "${NEXTCLOUD_USERNAME}:${NEXTCLOUD_PASSWORD}" \
         ${SERVER_ADDRESS}/send \
