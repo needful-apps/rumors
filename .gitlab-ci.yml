@@ -24,7 +24,7 @@ release-job:
   script:
     - echo "Downloading artifact"
     - cp hw.txt /tmp/hw.txt
-    - apk --no-cache add curl
+    - apt-get update && apt-get install -y curl
     - echo "Triggering release"
     - curl -X POST http://automation.needful-apps.de/github-pull
     - echo "Sending release link to NextCloud Talk"
@@ -43,7 +43,7 @@ failure-notification-job:
   when: on_failure
   script:
     - echo "Notifying failure via NextCloud Talk"
-    - apk --no-cache add curl
+    - apt-get update && apt-get install -y curl
     - |
       curl -u "${NEXTCLOUD_USERNAME}:${NEXTCLOUD_PASSWORD}" \
         ${SERVER_ADDRESS}/send \
