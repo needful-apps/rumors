@@ -4,6 +4,8 @@ stages:
   - notify_failure
 
 build-job:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "prod"'
   stage: build
   script:
     - echo "Checking out the repository"
@@ -16,8 +18,7 @@ build-job:
       - hw.txt
 
 release-job:
-  only:
-    - main
+  when: manual
   stage: release
   needs: 
     - build-job
