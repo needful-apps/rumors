@@ -26,7 +26,7 @@ release-job:
     - cp hw.txt /tmp/hw.txt
     - apt-get update && apt-get install -y curl
     - echo "Triggering release"
-    - curl -X POST http://automation.needful-apps.de/github-pull
+    - curl -X POST http://automation.needful-apps.de/git-pull
     - echo "Sending release link to NextCloud Talk"
     - |
       curl -u "${NEXTCLOUD_USERNAME}:${NEXTCLOUD_PASSWORD}" \
