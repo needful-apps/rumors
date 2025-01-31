@@ -13,13 +13,31 @@
             padding: 20px;
             transition: background-color 0.5s;
         }
-        header {
+        header, .banner {
             background-color: #6B8E23;
             color: white;
-            padding: 20px 0;
             text-align: center;
+            padding: 20px 0;
             font-size: 24px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        header {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .banner::after {
+            content: "";
+            background: url('https://example.com/banner.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.4;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
         }
         main {
             max-width: 800px;
@@ -30,6 +48,11 @@
         section {
             margin-bottom: 20px;
             transition: transform 0.3s;
+            border-left: 5px solid #6B8E23;
+            padding-left: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         h2 {
             color: #6B8E23;
@@ -79,6 +102,7 @@
         All About Cows
     </header>
     <main>
+        <div class="banner">Discover the World of Cows</div>
         <section>
             <h2>Introduction</h2>
             <p>Cows are domesticated bovine animals. They are commonly raised for their meat, milk, and hides, and they also play an important role in agriculture.</p>
