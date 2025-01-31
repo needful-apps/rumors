@@ -8,6 +8,7 @@ build-job:
     - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "prod"'
   stage: build
   script:
+    - echo "This repos is super ${OEHM}"
     - echo "Checking out the repository"
     - ls
     - echo "Compiling the code..."
