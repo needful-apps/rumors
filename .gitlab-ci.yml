@@ -14,9 +14,12 @@ build-job:
     - echo "Compiling the code..."
     - echo "Compile complete."
     - echo "hello world" > hw.txt
+    - echo "RESULT='fancy result'" > build.env
   artifacts:
     paths:
       - hw.txt
+    reports:
+      dotenv: build.env
 
 release-job:
   when: manual
@@ -24,6 +27,7 @@ release-job:
   needs: 
     - build-job
   script:
+    - echo "GOT RESULT '$RESULT'"
     - echo "Downloading artifact"
     - cp hw.txt /tmp/hw.txt
     - apt-get update && apt-get install -y curl
