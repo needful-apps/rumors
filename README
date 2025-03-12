@@ -1,0 +1,42 @@
+# Projekt: Rumors
+
+Dieses Projekt enthält eine Sammlung von HTML-Dateien, die verschiedene Artikel, Nachrichten und Informationen zu unterschiedlichen Themen darstellen. Hier ist eine Übersicht der enthaltenen Dateien und deren Inhalte:
+
+## Dateien und Inhalte
+
+- **index.html**: Hauptseite des Magazins mit Links zu verschiedenen Artikeln.
+- **ai.html**: Artikel über Künstliche Intelligenz.
+- **autos.html**: (Inhalt fehlt)
+- **comics.html**: Comic-Quiz.
+- **cows.html**: Informationen über Kühe.
+- **feuerwehr.html**: Artikel über die Feuerwehr.
+- **feuerwehr2.html**: Zweiter Teil des Artikels über die Feuerwehr.
+- **feuerwehrtest.html**: Testseite für Feuerwehrartikel.
+- **fusbal.html**: Artikel über Fußball.
+- **fussball.html**: Artikel über ein Fußballspiel.
+- **home_automation.html**: Artikel über Hausautomatisierung und IoT.
+- **impressum.html**: Impressum des Projekts.
+- **journal.html**: Bericht über einen Besuch im Freizeitpark.
+- **lokal.html**: Artikel über den Hafengeburtstag 2024 in Hamburg.
+- **lokaler.html**: Lokale Nachrichten aus Berlin.
+- **partnerakrobatik.html**: Artikel über Partnerakrobatik.
+- **raspberry.html**: Artikel über den Raspberry Pi.
+- **rennrad.html**: Artikel über Rennräder.
+- **schoener_leben.html**: Tipps für ein schöneres Leben.
+- **tanzen.html**: Artikel über Tanzen als Sport.
+- **tiervermittlung.html**: Informationen zur Tiervermittlung.
+- **TV-Programm.html**: Artikel über das TV-Programm von gestern.
+- **Warentest.html**: Testbericht über Kugelschreiber.
+- **Warentest2.html**: Testbericht über Bleistifte.
+- **welt.html**: Artikel über die Feuerwehr.
+- **welt2.html**: Artikel über die Polizei.
+- **welt3.html**: Artikel über Klimasünder Bau.
+- **welt4.html**: (Inhalt fehlt)
+
+## Nutzung
+
+Öffnen Sie die `index.html`-Datei in einem Webbrowser, um die Hauptseite des Magazins anzuzeigen und auf die verschiedenen Artikel zuzugreifen.
+
+## Kontakt
+
+Für Fragen oder Anmerkungen wenden Sie sich bitte an: no-contact@needful-apps.de
